@@ -28,7 +28,8 @@
   },
   "dependencies": {
     "@preact/signals": "^1.1.1",
-    "preact": "^10.11.1"
+    "preact": "^10.11.1",
+    "spectre.css": "^0.5.9"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.4.0",

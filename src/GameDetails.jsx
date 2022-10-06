@@ -1,6 +1,8 @@
 import { useSignal, useComputed, useSignalEffect } from "@preact/signals";
 import { recommendedSettings } from "./recommendedSettngs";
 
+const playerCountOptions = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
 export function GameDetails() {
 	const playerCount = useSignal(5);
 	useSignalEffect(() => {
@@ -92,19 +94,23 @@ export function GameDetails() {
 
 	return (
 		<>
-			<div>
-				<label for="playerCount">Number of players: </label>
-				<input
+			<h1>Finding Friends calculator</h1>
+			<div class="form-group">
+				<label class="form-label" for="playerCount">
+					Number of players:{" "}
+				</label>
+				<select
 					id="playerCount"
-					type="number"
-					value={playerCount}
-					onInput={(e) => {
-						const target = /** @type {HTMLInputElement} */ (e.target);
-						playerCount.value = target.valueAsNumber;
+					class="form-select"
+					onChange={(e) => {
+						const target = /** @type {HTMLSelectElement} */ (e.target);
+						playerCount.value = parseInt(target.value, 10);
 					}}
-					min="4"
-					max="16"
-				/>{" "}
+				>
+					{playerCountOptions.map((opt) => (
+						<option value={opt}>{opt}</option>
+					))}
+				</select>{" "}
 				<button
 					disabled={isRecommendedLoaded}
 					onClick={() => {
@@ -113,14 +119,17 @@ export function GameDetails() {
 						kittySize.value = recommended.kittySize;
 					}}
 				>
-					Load recommended
+					Reset to recommended
 				</button>
 			</div>
-			<div>Number of decks: {deckCount}</div>
-			<div>
-				<label for="jokerCount">Number of jokers: </label>
+			<div class="form-group">Number of decks: {deckCount}</div>
+			<div class="form-group">
+				<label class="form-label" for="jokerCount">
+					Number of jokers:{" "}
+				</label>
 				<select
 					id="jokerCount"
+					class="form-select"
 					onChange={(e) => {
 						const target = /** @type {HTMLSelectElement} */ (e.target);
 						jokerCount.value = parseInt(target.value, 10);
@@ -136,10 +145,13 @@ export function GameDetails() {
 					))}
 				</select>
 			</div>
-			<div>
-				<label for="kittySize">Size of kitty: </label>
+			<div class="form-group">
+				<label class="form-label" for="kittySize">
+					Size of kitty:{" "}
+				</label>
 				<select
 					id="kittySize"
+					class="form-select"
 					onChange={(e) => {
 						const target = /** @type {HTMLSelectElement} */ (e.target);
 						kittySize.value = parseInt(target.value, 10);
