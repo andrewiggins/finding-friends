@@ -108,7 +108,12 @@ export function GameDetails() {
 					}}
 				>
 					{playerCountOptions.map((opt) => (
-						<option value={opt}>{opt}</option>
+						<option
+							value={opt}
+							selected={playerCount.value == opt ? true : false}
+						>
+							{opt}
+						</option>
 					))}
 				</select>{" "}
 				<button
