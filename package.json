@@ -1,28 +1,39 @@
 {
-	"name": "finding-friends",
-	"version": "0.0.1",
-	"description": "A website to help play the trick-taking card game zhǎo péngyǒu (找朋友, 'Finding Friends')",
-	"main": "index.js",
-	"scripts": {
-		"start": "vite",
-		"build": "vite build",
-		"preview": "vite preview"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/andrewiggins/finding-friends.git"
-	},
-	"author": "Andre Wiggins",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/andrewiggins/finding-friends/issues"
-	},
-	"homepage": "https://github.com/andrewiggins/finding-friends#readme",
-	"dependencies": {
-		"preact": "^10.11.1"
-	},
-	"devDependencies": {
-		"@preact/preset-vite": "^2.4.0",
-		"vite": "^3.1.4"
-	}
+  "name": "finding-friends",
+  "version": "0.0.1",
+  "description": "A website to help play the trick-taking card game zhǎo péngyǒu (找朋友, 'Finding Friends')",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "lint": "prettier --check **/*.{js,jsx,ts,tsx,css,md,html,json,yml,yaml}",
+    "lint:fix": "prettier --write **/*.{js,jsx,ts,tsx,css,md,html,json,yml,yaml}",
+    "preview": "vite preview",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewiggins/finding-friends.git"
+  },
+  "author": "Andre Wiggins",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrewiggins/finding-friends/issues"
+  },
+  "homepage": "https://github.com/andrewiggins/finding-friends#readme",
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,css,md,html,json,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "preact": "^10.11.1"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.4.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "vite": "^3.1.4"
+  }
 }
