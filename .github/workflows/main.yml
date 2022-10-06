@@ -18,7 +18,6 @@ jobs:
           node-version: 16
           cache: "npm"
       - run: npm ci
-      - run: npm run lint
       - run: npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
