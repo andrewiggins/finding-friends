@@ -8,7 +8,7 @@ on:
     paths:
       - "src/**/*"
       - "index.html"
-      - "vite.config.j"
+      - "vite.config.js"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
