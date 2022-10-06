@@ -1,29 +1,26 @@
 name: Main CI
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "src/**/*"
+  pull_request:
+    branches:
+      - "**"
+  workflow_call:
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js v16
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: "npm"
       - run: npm ci
       - run: npm run lint
       - run: npm run build
-      - run: |
-          git config user.email "support+actions@github.com"
-          git config user.name "github-actions-bot"
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          npm run deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
