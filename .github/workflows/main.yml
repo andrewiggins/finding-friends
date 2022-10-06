@@ -1,0 +1,27 @@
+name: Main CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**/*"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js v16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: "npm"
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
