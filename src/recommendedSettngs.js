@@ -6,9 +6,9 @@ export const recommendedSettings = {
 		// kitty/hand ratio: 24%
 	},
 	5: {
-		jokerCount: 4,
-		kittySize: 8,
-		// kitty/hand ratio: 40%
+		jokerCount: 4, // alt: 2
+		kittySize: 8, // alt: 6
+		// kitty/hand ratio: 40%, alt: 35%
 	},
 	6: {
 		jokerCount: 4,
@@ -16,9 +16,9 @@ export const recommendedSettings = {
 		// kitty/hand ratio: 35%
 	},
 	7: {
-		jokerCount: 2, // alt: 0
-		kittySize: 8, // alt: 6
-		// kitty/hand ratio: 57%, alt: 43%
+		jokerCount: 0, // alt: 2
+		kittySize: 6, // alt: 8
+		// kitty/hand ratio: 43%, alt: 57%
 	},
 	8: {
 		jokerCount: 4,
@@ -31,14 +31,14 @@ export const recommendedSettings = {
 		// kitty/hand ratio: 41%
 	},
 	10: {
-		jokerCount: 2, // alt: 0
-		kittySize: 8, // alt: 6
-		// kitty/hand ratio: 53%, alt: 40%
+		jokerCount: 0, // alt: 2
+		kittySize: 6, // alt: 8
+		// kitty/hand ratio: 40%  alt: 53%
 	},
 	11: {
-		jokerCount: 6, // alt: 4
-		kittySize: 8, // alt: 6
-		// kitty/hand ratio: 57%, alt: 43%
+		jokerCount: 4, // alt: 6
+		kittySize: 6, // alt: 8
+		// kitty/hand ratio: 43%, alt: 57%
 	},
 	12: {
 		jokerCount: 6,
