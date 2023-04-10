@@ -1,5 +1,6 @@
 import { useSignal, useComputed, useSignalEffect } from "@preact/signals";
 import { recommendedSettings } from "./recommendedSettngs";
+import styles from "./styles.module.css";
 
 const suiteColor = { "♠": "black", "♥": "red", "♦": "red", "♣": "black" };
 const cardSuites = ["♠", "♦", "♣", "♥"];
@@ -126,7 +127,7 @@ export function GameDetails() {
 	return (
 		<>
 			<h1>Finding Friends calculator</h1>
-			<h2>The Deck</h2>
+			<h2 class={styles.header}>The Deck</h2>
 			<div class="form-group">
 				<label class="form-label" for="playerCount">
 					Number of players:{" "}
@@ -225,7 +226,7 @@ export function GameDetails() {
 				<li>Points to score 1: {attackerPoints1}</li>
 				<li>Points to score 2: {attackerPoints2}</li>
 			</ul> */}
-			<h2 style={{ marginTop: "1rem" }}>Card order</h2>
+			<h2 class={styles.header}>Card order</h2>
 			<div class="form-group">
 				<label class="form-label" for="declared-card">
 					Select declared card:
@@ -250,6 +251,8 @@ export function GameDetails() {
 						</option>
 					))}
 				</select>
+			</div>
+			<div>
 				<p>Card order:</p>
 				<ol>
 					<li>Red Jokers</li>
@@ -279,6 +282,19 @@ export function GameDetails() {
 					</li>
 				</ol>
 			</div>
+			<h2 class={styles.header}>Resources</h2>
+			<ul>
+				<li>
+					<a href="https://en.wikipedia.org/wiki/Sheng_ji">
+						Shenj ji (Wikipedia)
+					</a>
+				</li>
+				<li>
+					<a href="https://www.zhao-pengyou.com/index.html">
+						Zhao Pengyou (Finding Friends)
+					</a>
+				</li>
+			</ul>
 		</>
 	);
 }
