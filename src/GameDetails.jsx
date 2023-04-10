@@ -1,7 +1,36 @@
 import { useSignal, useComputed, useSignalEffect } from "@preact/signals";
 import { recommendedSettings } from "./recommendedSettngs";
 
+const suiteColor = { "♠": "black", "♥": "red", "♦": "red", "♣": "black" };
+const cardSuites = ["♠", "♦", "♣", "♥"];
+const cardRanks = [
+	"A",
+	"K",
+	"Q",
+	"J",
+	"10",
+	"9",
+	"8",
+	"7",
+	"6",
+	"5",
+	"4",
+	"3",
+	"2",
+];
+const allCards = [];
+for (let suite of cardSuites) {
+	for (let rank of cardRanks) {
+		allCards.push(suite + rank);
+	}
+}
+
 const playerCountOptions = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
+function CardName({ card }) {
+	const suite = typeof card === "string" ? card[0] : card.value[0];
+	return <span style={{ color: suiteColor[suite] }}>{card}</span>;
+}
 
 export function GameDetails() {
 	const playerCount = useSignal(5);
@@ -92,9 +121,12 @@ export function GameDetails() {
 		);
 	});
 
+	const declaredCard = useSignal(allCards[0]);
+
 	return (
 		<>
 			<h1>Finding Friends calculator</h1>
+			<h2>The Deck</h2>
 			<div class="form-group">
 				<label class="form-label" for="playerCount">
 					Number of players:{" "}
@@ -193,6 +225,60 @@ export function GameDetails() {
 				<li>Points to score 1: {attackerPoints1}</li>
 				<li>Points to score 2: {attackerPoints2}</li>
 			</ul> */}
+			<h2 style={{ marginTop: "1rem" }}>Card order</h2>
+			<div class="form-group">
+				<label class="form-label" for="declared-card">
+					Select declared card:
+				</label>
+				<select
+					class="form-select"
+					id="declared-card"
+					onChange={(e) => {
+						const target = /** @type {HTMLSelectElement} */ (e.target);
+						declaredCard.value = target.value;
+					}}
+					style={{ color: suiteColor[declaredCard.value[0]] }}
+				>
+					{allCards.map((card) => (
+						<option
+							key={card}
+							value={card}
+							style={{ color: suiteColor[card[0]] }}
+							selected={card == declaredCard.value ? true : false}
+						>
+							<CardName card={card} />
+						</option>
+					))}
+				</select>
+				<p>Card order:</p>
+				<ol>
+					<li>Red Jokers</li>
+					<li>Black Jokers</li>
+					<li>
+						Declared card (<CardName card={declaredCard} />)
+					</li>
+					<li>
+						Same rank as declared card (
+						{cardSuites
+							.filter((s) => s !== declaredCard.value[0])
+							.map((s) => `${s}${declaredCard.value.slice(1)}`)
+							.flatMap((c, i) => [i == 0 ? "" : ", ", <CardName card={c} />])}
+						)
+					</li>
+					<li>
+						Other cards in declared suite (
+						{cardRanks
+							.filter((r) => r !== declaredCard.value.slice(1))
+							.map((r) => `${declaredCard.value[0]}${r}`)
+							.flatMap((c, i) => [i == 0 ? "" : ", ", <CardName card={c} />])}
+						)
+					</li>
+					<li>
+						All other cards, Ace, King, Queen, (excluding declared rank) down to
+						2
+					</li>
+				</ol>
+			</div>
 		</>
 	);
 }
