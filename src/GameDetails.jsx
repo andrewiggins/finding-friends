@@ -293,7 +293,7 @@ export function GameDetails() {
 					<a href="https://www.zhao-pengyou.com/index.html">
 						Zhao Pengyou (Finding Friends)
 					</a>
-Zhao Pengyou - card game rules https://www.pagat.com/kt5/pengyou.html
+<a href="https://www.pagat.com/kt5/pengyou.html">Zhao Pengyou - card game rules</a> 
 				</li>
 			</ul>
 		</>
